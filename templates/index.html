@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Mi Familia</title>
     <link rel="stylesheet" href="/static/css/estilos.css">
+    <link rel="icon" href="/static/favicon.ico">
 
 </head>
+
 <body>
     <header>
         <h1>Bienvenidos a Nuestra Historia 💖</h1>
@@ -44,9 +46,25 @@
     </footer>
 
     <!-- Música opcional -->
-    <audio autoplay loop>
-        <source src="/static/music/familia.mp3" type="audio/mpeg">
+    <audio id="bgAudio"  loop preload="auto">
+        <source src="/static/music/cancion.mp3" type="audio/mpeg">
         Tu navegador no soporta audio.
     </audio>
+
+<!--El siguiente Script es para que se reproduzca la canciòn solo con un solo clic en cualquier parte de la pantalla-->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('bgAudio');
+    // Función que reproduce el audio y se quita a sí misma
+    function playOnce() {
+      audio.play().catch(() => {});              // Intenta reproducir
+      document.removeEventListener('click', playOnce);
+    }
+    // Captura el primer clic en cualquier parte de la página
+    document.addEventListener('click', playOnce);
+  });
+</script>
+
+
 </body>
 </html>
